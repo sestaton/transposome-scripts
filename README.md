@@ -4,6 +4,7 @@ transposome-scripts
 Utility scripts using for working with Transposome
 
 **DESCRIPTION**
+
 This repository contains user-supplied scripts to help with many aspects of genome analysis using Transposome. A lisitng of the included scripts is provided below.
 
 <table>
@@ -20,10 +21,9 @@ If you write a script that uses Transposome please fork this repo, add your scri
 **CITATION**
 
 If you use any of these tools in your work, please use the following citation: 
-[![DOI](https://zenodo.org/badge/5565/sestaton/Transposome.png)](http://dx.doi.org/10.5281/zenodo.11303)
 
     Staton SE, and Burke JM. 2014. Transposome: Annotation of transposable element families
-         from unassembled sequence reads. doi:10.5281/zenodo.11303
+         from unassembled sequence reads. Bioinformatics, in press.
 
 **LICENSE AND COPYRIGHT**
 
