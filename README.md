@@ -12,6 +12,9 @@ This repository contains user-supplied scripts to help with many aspects of geno
 <tr><th><a href="https://github.com/sestaton/transposome-scripts/blob/master/sample_reads.pl">sample_reads.pl</a></th><td>Randomly sample a FASTA or FASTQ file for a desired number of sequences.</td></tr>
 <tr><th><a href="https://github.com/sestaton/transposome-scripts/blob/master/get_seqs_from_list.pl">get_seqs_from_list.pl</a></th><td>Pull sequences from a file given a file of sequence IDs.</td></tr>
 <tr><th><a href="https://github.com/sestaton/transposome-scripts/blob/master/sample_and_interleave_pairs.pl">sample_and_interleave_pairs.pl</a></th><td>Sample reads from both pairs of a paired-end read and interleave them for input to Transposome.</td></tr>
+<tr><th><a href="https://github.com/sestaton/transposome-scripts/blob/master/permute_graph_edges.pl">permute_graph_edges.pl</a></th><td>Test a range of parameters for filtering pairwise matches to graph edges.</td></tr>
+<tr><th><a href="https://github.com/sestaton/transposome-scripts/blob/master/permute_cluster_joining.pl">permute_cluster_joining.pl</a></th><td>Vary the threshold for joining clusters.</td></tr>
+<tr><th><a href="https://github.com/sestaton/transposome-scripts/blob/master/full_analysis_with_varying_coverage.pl">full_analysis_with_varying_coverage.pl</a></th><td>Cluster and annotate sequences with varying genome coverage.</td></tr>
 </table>
 
 **CONTRIBUTING**
