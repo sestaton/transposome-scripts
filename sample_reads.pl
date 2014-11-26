@@ -8,7 +8,6 @@ use File::Basename;
 use Transposome::SeqUtil;
 use Getopt::Long;
 
-my $usage = "$0 -i seqfile.fas -n 100_000\n";
 my $infile;
 my $sample_size;
 my $help;
