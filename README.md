@@ -19,6 +19,21 @@ This repository contains user-supplied scripts to help with many aspects of geno
 <tr><th><a href="https://github.com/sestaton/transposome-scripts/blob/master/full_analysis_with_varying_coverage.pl">full_analysis_with_varying_coverage.pl</a></th><td>Cluster and annotate sequences with varying genome coverage.</td></tr>
 </table>
 
+**USAGE**
+
+All scripts will generate a usage statement if executed with no arguments, so to find out proper usage of script simply type "perl" followed by the name of the script. For example,
+
+    $ perl sample_reads.pl 
+    USAGE: sample_reads.pl -i seqs.fasta -n 100000 
+    
+    Required:
+     -i|infile           :       The sequence file to sample.
+     -n|sample_size      :       The number of sequences to sample (integer).
+                             (NB: the value may be as '1000000' or with underscores
+                                  as in '1_000_000').
+    Options:
+    -h|help              :       Print a usage statement.
+
 **CONTRIBUTING**
 
 If you write a script that uses Transposome please fork this repo, add your script and a description of it to the table above, and then send a pull request. I'll be happy to incorporate any script that looks useful. Please try to follow the coding style of the provided scripts as much as possible. At minimum, make sure the scripts handle options correctly and produce some kind of usage statement.
