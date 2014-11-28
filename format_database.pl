@@ -90,8 +90,7 @@ while (my $seq = $seqio->next_seq) {
 }
 close $out;
 
-exit
-
+exit;
 ## methods
 sub usage {
     my $script = basename($0);
