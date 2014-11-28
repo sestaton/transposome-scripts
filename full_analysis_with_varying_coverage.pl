@@ -112,7 +112,7 @@ for my $sample_size (qw(100_000 200_000 300_000 400_000 500_000)) {
 }
 exit;
 
-## subs
+## methods
 sub usage {
     my $script = basename($0);
     print STDERR <<END
