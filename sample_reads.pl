@@ -22,7 +22,7 @@ usage() and exit(0) if $help;
 usage() and exit(1) if !$infile or !$sample_size;
 my ($iname, $ipath, $isuffix) = fileparse($infile, qr/\.[^.]*/);
 
-say "Sampling $infile for sample size: ", $sample_size;
+say STDERR "Sampling $infile for sample size: ", $sample_size;
 my $sequtil = Transposome::SeqUtil->new( file        => $infile, 
 					 sample_size => $sample_size, 
 					 no_store    => 1 );
@@ -41,7 +41,7 @@ exit;
 sub usage {
     my $script = basename($0);
     print STDERR <<END
-USAGE: $script [-i] [-n] [-h]
+USAGE: $script -i seqs.fasta -n 100000 
 
 Required:
  -i|infile           :       The sequence file to sample.
