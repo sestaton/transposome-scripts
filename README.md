@@ -5,7 +5,7 @@ Utility scripts using for working with Transposome
 
 **DESCRIPTION**
 
-This repository contains user-supplied scripts to help with many aspects of genome analysis using [Transposome](https://github.com/sestaton/Transposome). A lisitng of the included scripts is provided below (more will be added soon).
+This repository contains user-supplied scripts to help with many aspects of genome analysis using [Transposome](https://github.com/sestaton/Transposome). A lisitng of the included scripts is provided below.
 
 <table>
 <tr><th>Tool</th><th>Description</th></tr>
