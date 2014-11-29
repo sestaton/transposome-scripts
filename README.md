@@ -15,8 +15,24 @@ This repository contains user-supplied scripts to help with many aspects of geno
 <tr><th><a href="https://github.com/sestaton/transposome-scripts/blob/master/permute_graph_edges.pl">permute_graph_edges.pl</a></th><td>Test a range of parameters for filtering pairwise matches to graph edges.</td></tr>
 <tr><th><a href="https://github.com/sestaton/transposome-scripts/blob/master/permute_cluster_joining.pl">permute_cluster_joining.pl</a></th><td>Vary the threshold for joining clusters.</td></tr>
 <tr><th><a href="https://github.com/sestaton/transposome-scripts/blob/master/format_database.pl">format_database.pl</a></th><td>Format a Fasta file of repeat sequences for use with Transposome.</td></tr>
+<tr><th><a href="https://github.com/sestaton/transposome-scripts/blob/master/select_database_species.pl">select_database_species.pl</a></th><td>Select all sequences from a given species from a repeat database.</td></tr>
 <tr><th><a href="https://github.com/sestaton/transposome-scripts/blob/master/full_analysis_with_varying_coverage.pl">full_analysis_with_varying_coverage.pl</a></th><td>Cluster and annotate sequences with varying genome coverage.</td></tr>
 </table>
+
+**USAGE**
+
+All scripts will generate a usage statement if executed with no arguments, so to find out the proper usage of script simply type "perl" followed by the name of the script. For example,
+
+    $ perl sample_reads.pl 
+    USAGE: sample_reads.pl -i seqs.fasta -n 100000 
+    
+    Required:
+     -i|infile           :       The sequence file to sample.
+     -n|sample_size      :       The number of sequences to sample (integer).
+                                 (NB: the value may be as '1000000' or with underscores
+                                  as in '1_000_000').
+    Options:
+    -h|help              :       Print a usage statement.
 
 **CONTRIBUTING**
 

@@ -20,7 +20,7 @@ GetOptions(
            'g|genus=s'   => \$genus,
            's|species=s' => \$species,
            'h|help'      => \$help,
-    );
+          );
 
 usage() and exit(0) if $help;
 
@@ -90,8 +90,7 @@ while (my $seq = $seqio->next_seq) {
 }
 close $out;
 
-exit
-
+exit;
 ## methods
 sub usage {
     my $script = basename($0);
@@ -100,7 +99,7 @@ USAGE: $script [-i] [-o] [-g] [-s] [-h]
 
 Required:
 -i|infile              :       A Fasta file of repeats to be formatted for Transposome.
--o|outfile             :       A name for the formatted database..
+-o|outfile             :       A name for the formatted database.
 -g|genus               :       The source genus of the sequences.
 -s|species             :       The source species of the sequences.
 
