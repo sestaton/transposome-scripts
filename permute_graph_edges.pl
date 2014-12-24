@@ -9,11 +9,13 @@ use Transposome::PairFinder;
 use Getopt::Long;
 
 my $infile;
+my $format;
 my $out_dir;
 my $help;
 
 GetOptions(
 	   'i|infile=s'   => \$infile,
+	   'f|format=s'   => \$format,
 	   'o|outdir=s'   => \$out_dir,
 	   'h|help'       => \$help,
 	   );
@@ -22,8 +24,11 @@ usage() and exit(0) if $help;
 usage() and exit(1) if !$infile or !$out_dir;
 my ($iname, $ipath, $isuffix) = fileparse($infile, qr/\.[^.]*/);
 
+$format //= 'fasta';
+
 my $rep = $iname."_blast_report.txt";
 my $blast = Transposome::Run::Blast->new( file      => $infile,
+					  format    => $format,
                                           dir       => $out_dir,
                                           threads   => 4,
                                           cpus      => 2,
@@ -61,6 +66,7 @@ Required:
                              of each parameter set.
 
 Options:
+-f|format            :       The input sequence format (Default: FASTA).
 -h|help              :       Print a usage statement.
 
 END
