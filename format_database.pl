@@ -5,7 +5,7 @@ use strict;
 use warnings;
 use autodie qw(open);
 use File::Basename;
-use Transposome::SeqIO;
+use Transposome::SeqFactory;
 use Getopt::Long;
 
 my $infile = shift or die $usage;
@@ -33,7 +33,7 @@ if (!$infile || !$outfile || !$genus || !$species) {
 my $epithet = $genus.q{ }.$species;
 
 open my $out, '>', $outfile;
-my $seqio = Transposome::SeqIO->new( file => $infile );
+my $seqio = Transposome::SeqFactory->new( file => $infile )->make_seqio_object;
 
 while (my $seq = $seqio->next_seq) {
     # format ID
