@@ -10,11 +10,13 @@ use Getopt::Long;
 
 my $infile;
 my $outfile;
+my $format;
 my $list;
 my $help;
 
 GetOptions(
 	   'i|infile=s'  => \$infile,
+	   'f|format=s'  => \$format,
 	   'o|outfile=s' => \$outfile,
 	   'l|list=s'    => \$list,
 	   'h|help'      => \$help,
@@ -23,7 +25,12 @@ GetOptions(
 usage() and exit(0) if $help;
 usage() and exit(1) if !$infile || !$outfile || !$list;
 
-my $seq_obj = Transposome::SeqUtil->new( file => $infile, in_memory => 0 ); 
+$format //= 'fasta';
+
+my $seq_obj = Transposome::SeqUtil->new( file      => $infile,
+					 format    => $format,
+					 in_memory => 0 ); 
+
 my ($seqs, $seqct) = $seq_obj->store_seq;
 
 say "There are $seqct sequences in $infile.";
@@ -54,6 +61,7 @@ Required:
                             to the output file.
 
 Options:
+-f|format           :       The input sequence format (Default: FASTA).
 -h|help             :       Print a usage statement.
 
 END
