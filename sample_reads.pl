@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-use 5.012;
+use 5.010;
 use strict;
 use warnings;
 use autodie qw(open);
@@ -9,11 +9,13 @@ use Transposome::SeqUtil;
 use Getopt::Long;
 
 my $infile;
+my $format;
 my $sample_size;
 my $help;
 
 GetOptions(
 	   'i|infile=s'      => \$infile,
+	   'f|format=s'      => \$format,
 	   'n|sample_size=i' => \$sample_size,
 	   'h|help'          => \$help,
 	   );
@@ -22,8 +24,11 @@ usage() and exit(0) if $help;
 usage() and exit(1) if !$infile or !$sample_size;
 my ($iname, $ipath, $isuffix) = fileparse($infile, qr/\.[^.]*/);
 
+$format //= 'fasta';
+
 say STDERR "Sampling $infile for sample size: ", $sample_size;
 my $sequtil = Transposome::SeqUtil->new( file        => $infile, 
+					 format      => $format,
 					 sample_size => $sample_size, 
 					 no_store    => 1 );
 
@@ -49,6 +54,7 @@ Required:
                              (NB: the value may be as '1000000' or with underscores
                               as in '1_000_000').
 Options:
+-f|format            :       The input sequence format (Default: FASTA).
 -h|help              :       Print a usage statement.
 
 END

@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 
 ## pragmas and library imports
-use 5.012;
+use 5.010;
 use strict;
 use warnings;
 use Getopt::Long;

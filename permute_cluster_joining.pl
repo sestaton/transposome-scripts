@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-use 5.012;
+use 5.010;
 use strict;
 use warnings;
 use File::Basename;
@@ -10,6 +10,7 @@ use Transposome::SeqUtil;
 
 #my $usage = "$0 -s seqfile.fas -int int_file -idx idx_file -o output_directory\n";
 my $report = 'cluster_merge_permute_report.txt';
+my $seq_format;
 my $int_file;
 my $idx_file;
 my $seq_file;
@@ -18,6 +19,7 @@ my $help;
 
 GetOptions( 
 	   's|seqfile=s'     => \$seq_file,
+	   'f|seq_format=s'  => \$seq_format,
            'int|intfile=s'   => \$int_file,
            'idx|idxfile=s'   => \$idx_file,
            'o|outdir=s'      => \$out_dir,
@@ -26,6 +28,8 @@ GetOptions(
 
 usage() and exit(1) if $help;
 usage() and exit(1) if !$int_file or !$idx_file or !$seq_file or !$out_dir;
+
+$seq_format //= 'fasta';
 
 for my $merge_thresh (qw(100 500 1000)) { # the exact threshold will depend on the size of the data set
     my $cluster = Transposome::Cluster->new( file            => $int_file, 
@@ -37,7 +41,7 @@ for my $merge_thresh (qw(100 500 1000)) { # the exact threshold will depend on t
     my $cluster_file = $cluster->make_clusters($comm, $idx_file);
 
     my ($read_pairs, $vertex, $uf) = $cluster->find_pairs($cluster_file, $report);
-    my $memstore = Transposome::SeqUtil->new( file => $seq_file, in_memory => 1 );
+    my $memstore = Transposome::SeqUtil->new( file => $seq_file, format => $seq_format, in_memory => 1 );
     my ($seqs, $seqct) = $memstore->store_seq;
 
     my ($cls_dir_path, $cls_with_merges_path, $cls_tot) = $cluster->merge_clusters($vertex, $seqs, $read_pairs, $report, $uf);
@@ -59,7 +63,8 @@ Required:
                               of the Transposome::Cluster class.
 
 Options:
--h|help             :       Print a usage statement.
+-f|seq_format         :       The input sequence format (Default: FASTA).
+-h|help               :       Print a usage statement.
 
 END
 }
