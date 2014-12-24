@@ -14,6 +14,7 @@ use Transposome::Run::Blast;
 
 ## lexical vars
 my $seq_file;
+my $seq_format;
 my $out_dir;
 my $rep_db;
 my $cpu;
@@ -25,6 +26,7 @@ my $bls_fcov;
 my $help;
 
 GetOptions( 's|sequence_file=s'        => \$seq_file,
+	    'f|sequence_format=s'      => \$seq_format,
             'o|output_dir=s'           => \$out_dir,
             'repdb|repeat_database=s'  => \$rep_db,
             'c|cpus=i'                 => \$cpu,
@@ -45,15 +47,21 @@ if (!$seq_file || !$out_dir || !$cpu || !$thread) {
     exit(1);
 }
 
+
 $seq_num  //= 25000;
 $cls_size //= 100;
 $bls_pid  //= 90;
 $bls_fcov //= 0.55;
+$seq_format //= 'fasta';
 my $merge_thresh = 100;
 my ($iname, $ipath, $isuffix) = fileparse($seq_file, qr/\.[^.]*/);
 
 for my $sample_size (qw(100_000 200_000 300_000 400_000 500_000)) {
-    my $sequtil = Transposome::SeqUtil->new( file => $seq_file, sample_size => $sample_size , no_store => 1);
+    my $sequtil = Transposome::SeqUtil->new( file        => $seq_file,
+					     format      => $seq_format,
+					     sample_size => $sample_size, 
+                                             no_store    => 1 );
+
     my $samp_seq = $iname."_$sample_size".".fasta";
 
     { 
@@ -95,19 +103,21 @@ for my $sample_size (qw(100_000 200_000 300_000 400_000 500_000)) {
     my ($read_pairs, $vertex, $uf) = $cluster->find_pairs($cluster_file, $samp_rep);
     my $memstore = Transposome::SeqUtil->new( file => $samp_seq, in_memory => 1 );
     my ($seqs, $seqct) = $memstore->store_seq;
-    my ($cls_dir_path, $cls_with_merges_path, $cls_tot) = $cluster->merge_clusters($vertex, $seqs, 
-                                                                                   $read_pairs, $samp_rep, $uf);
+
+    my ($cls_dir_path, $cls_with_merges_path, $cls_tot) 
+       = $cluster->merge_clusters($vertex, $seqs, $read_pairs, $samp_rep, $uf);
 
     # annotate clusters and generate whole-genome summary of results
     my $annotation = Transposome::Annotation->new( database  => $rep_db,
                                                    dir       => $samp_dir,
                                                    file      => $samp_rep );
 
-    my ($anno_rp_path, $anno_sum_rep_path, $total_readct,                                                                           
-        $rep_frac, $blasts, $superfams) = $annotation->annotate_clusters($cls_dir_path, $seqct, $cls_tot);
+    my ($anno_rp_path, $anno_sum_rep_path, $total_readct, $rep_frac, $blasts, $superfams) 
+       = $annotation->annotate_clusters($cls_dir_path, $seqct, $cls_tot);
 
     $annotation->clusters_annotation_to_summary($anno_rp_path, $anno_sum_rep_path, $total_readct,
                                                 $seqct, $rep_frac, $blasts, $superfams, $samp_rep);
+
     $merge_thresh += 100;
 }
 exit;
@@ -128,6 +138,7 @@ Required:
  -repdb|repeat_database :       A sequence file of repeats to be used for annotation.
 
 Options:
+-f|sequence_format      :       The input sequence format (Default: FASTA).
 -pid|percent_identity   :       Percent identity between pairwise matches in all vs. all blast (Default: 90).
 -fcov|fraction_coverage :       The fraction coverage between pairwise matches in all vs. all blast (Default: 0.55).
 -cls|cluster_size       :       The minimum size of a cluster to be used for annotation (Default: 100).
