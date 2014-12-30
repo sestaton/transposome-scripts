@@ -27,12 +27,12 @@ All scripts will generate a usage statement if executed with no arguments, so to
     USAGE: sample_reads.pl -i seqs.fasta -n 100000 
     
     Required:
-     -i|infile           :       The sequence file to sample.
-     -n|sample_size      :       The number of sequences to sample (integer).
-                                 (NB: the value may be as '1000000' or with underscores
-                                  as in '1_000_000').
+     -i|infile            :       The sequence file to sample.
+     -n|sample_size       :       The number of sequences to sample (integer).
+                                  (NB: the value may be as '1000000' or with underscores
+                                   as in '1_000_000').
     Options:
-    -h|help              :       Print a usage statement.
+     -h|help              :       Print a usage statement.
 
 **CONTRIBUTING**
 
