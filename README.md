@@ -21,7 +21,7 @@ This repository contains user-supplied scripts to help with many aspects of geno
 
 **USAGE**
 
-All scripts will generate a usage statement if executed with no arguments, so to find out the proper usage of script simply type "perl" followed by the name of the script. For example,
+All scripts will generate a usage statement if executed with no arguments, so to find out the proper usage of script simply type `perl` followed by the name of the script. For example,
 
     $ perl sample_reads.pl 
     USAGE: sample_reads.pl -i seqs.fasta -n 100000 
@@ -32,6 +32,7 @@ All scripts will generate a usage statement if executed with no arguments, so to
                                   (NB: the value may be as '1000000' or with underscores
                                    as in '1_000_000').
     Options:
+     -f|format            :       The input sequence format (Default: FASTA).
      -h|help              :       Print a usage statement.
 
 **CONTRIBUTING**
