@@ -54,8 +54,8 @@ Required:
                              (NB: the value may be as '1000000' or with underscores
                               as in '1_000_000').
 Options:
--f|format            :       The input sequence format (Default: FASTA).
--h|help              :       Print a usage statement.
+ -f|format            :       The input sequence format (Default: FASTA).
+ -h|help              :       Print a usage statement.
 
 END
 }
