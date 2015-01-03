@@ -55,14 +55,14 @@ sub usage {
 USAGE: $script [-i] [-o] [-l] [-h]
 
 Required:
--i|infile           :       The sequence file to pull sequences from.
--o|outfile          :       The file to write the extracted sequences to.
--l|list             :       A file containing IDs (one per line) that should be written
-                            to the output file.
+ -i|infile           :       The sequence file to pull sequences from.
+ -o|outfile          :       The file to write the extracted sequences to.
+ -l|list             :       A file containing IDs (one per line) that should be written
+                             to the output file.
 
 Options:
--f|format           :       The input sequence format (Default: FASTA).
--h|help             :       Print a usage statement.
+ -f|format           :       The input sequence format (Default: FASTA).
+ -h|help             :       Print a usage statement.
 
 END
 }
