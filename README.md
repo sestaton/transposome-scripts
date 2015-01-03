@@ -48,7 +48,7 @@ If you use any of these tools in your work, please use the following citation:
 
 **LICENSE AND COPYRIGHT**
 
-Copyright (C) 2014 S. Evan Staton
+Copyright (C) 2014-2015 S. Evan Staton
 
 This program is distributed under the MIT (X11) License, which should be distributed with the package. 
 If not, it can be found here: http://www.opensource.org/licenses/mit-license.php
