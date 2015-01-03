@@ -66,8 +66,8 @@ Required:
                              of each parameter set.
 
 Options:
--f|format            :       The input sequence format (Default: FASTA).
--h|help              :       Print a usage statement.
+ -f|format           :       The input sequence format (Default: FASTA).
+ -h|help             :       Print a usage statement.
 
 END
 }
