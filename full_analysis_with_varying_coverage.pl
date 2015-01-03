@@ -129,21 +129,21 @@ sub usage {
 USAGE: $script -s seqs.fastq -o my_cluster_report.txt -n 25000 -c 2 -t 12 [-h]
 
 Required:
- -s|sequence_file       :       A Fasta/q file to analyze for repeats
- -o|output_dir          :       A name for the output to be written.
- -c|cpus                :       The number of  CPUs to use for each blast process.
- -t|threads             :       The number of parallel blast processes to run.
-                                (NB: threads X cpus should be less than or equal to the number
-                                of CPUs on your machine.)
- -repdb|repeat_database :       A sequence file of repeats to be used for annotation.
+ -s|sequence_file        :       A FASTA/Q file to analyze for repeats
+ -o|output_dir           :       A name for the output to be written.
+ -c|cpus                 :       The number of  CPUs to use for each blast process.
+ -t|threads              :       The number of parallel blast processes to run.
+                                 (NB: threads X cpus should be less than or equal to the number
+                                 of CPUs on your machine.)
+ -repdb|repeat_database  :       A sequence file of repeats to be used for annotation.
 
 Options:
--f|sequence_format      :       The input sequence format (Default: FASTA).
--pid|percent_identity   :       Percent identity between pairwise matches in all vs. all blast (Default: 90).
--fcov|fraction_coverage :       The fraction coverage between pairwise matches in all vs. all blast (Default: 0.55).
--cls|cluster_size       :       The minimum size of a cluster to be used for annotation (Default: 100).
--n|sequence_num         :       The number of sequences to submit to each blast process (Default: 25000).
--h|help                 :       Print a usage statement.
+ -f|sequence_format      :       The input sequence format (Default: FASTA).
+ -pid|percent_identity   :       Percent identity between pairwise matches in all vs. all blast (Default: 90).
+ -fcov|fraction_coverage :       The fraction coverage between pairwise matches in all vs. all blast (Default: 0.55).
+ -cls|cluster_size       :       The minimum size of a cluster to be used for annotation (Default: 100).
+ -n|sequence_num         :       The number of sequences to submit to each blast process (Default: 25000).
+ -h|help                 :       Print a usage statement.
 
 END
 }
