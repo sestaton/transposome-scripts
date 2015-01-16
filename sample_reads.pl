@@ -41,11 +41,11 @@ my $out = $iname."_$sample_size".".fasta";
 }
 
 exit;
-
-# methods
+## methods
 sub usage {
     my $script = basename($0);
     print STDERR <<END
+
 USAGE: $script -i seqs.fasta -n 100000 
 
 Required:

@@ -120,12 +120,13 @@ for my $sample_size (qw(100_000 200_000 300_000 400_000 500_000)) {
 
     $merge_thresh += 100;
 }
-exit;
 
+exit;
 ## methods
 sub usage {
     my $script = basename($0);
     print STDERR <<END
+
 USAGE: $script -s seqs.fastq -o my_cluster_report.txt -n 25000 -c 2 -t 12 [-h]
 
 Required:

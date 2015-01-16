@@ -58,10 +58,11 @@ for my $seqs1_id (keys %$seqs1) {
 close $out;
 
 exit;
-#methods
+##methods
 sub usage {
     my $script = basename($0);
     print STDERR <<END
+
 USAGE: $script [-f] [-r] [-o] [-n] [-h]
 
 Required:

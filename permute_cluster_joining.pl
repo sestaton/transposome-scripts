@@ -47,10 +47,11 @@ for my $merge_thresh (qw(100 500 1000)) { # the exact threshold will depend on t
 }
 
 exit;
-# methods
+## methods
 sub usage {
     my $script = basename($0);
     print STDERR <<END
+
 USAGE: $script [-i] [-o] [-int] [-idx] [-h]
 
 Required:

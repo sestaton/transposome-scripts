@@ -48,10 +48,11 @@ for my $id (keys %ids) {
 close $out;
 
 exit;
-# methods
+## methods
 sub usage {
     my $script = basename($0);
     print STDERR <<END
+
 USAGE: $script [-i] [-o] [-l] [-h]
 
 Required:
