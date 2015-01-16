@@ -8,7 +8,7 @@ use File::Basename;
 use Transposome::SeqFactory;
 use Getopt::Long;
 
-my $infile = shift or die $usage;
+my $infile; 
 my $outfile; 
 my $genus;
 my $species;
@@ -95,6 +95,7 @@ exit;
 sub usage {
     my $script = basename($0);
     print STDERR <<END
+
 USAGE: $script [-i] [-o] [-g] [-s] [-h]
 
 Required:
