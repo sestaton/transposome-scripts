@@ -43,7 +43,13 @@ for my $merge_thresh (qw(100 500 1000)) { # the exact threshold will depend on t
     my $memstore = Transposome::SeqUtil->new( file => $seq_file, format => $seq_format, in_memory => 1 );
     my ($seqs, $seqct) = $memstore->store_seq;
 
-    my ($cls_dir_path, $cls_with_merges_path, $cls_tot) = $cluster->merge_clusters($vertex, $seqs, $read_pairs, $report, $uf);
+    my $cluster_data 
+	= $cluster->merge_clusters({ graph_vertices         => $vertex,
+				     sequence_hash          => $seqs,
+				     read_pairs             => $read_pairs,
+				     cluster_log_file       => $report
+				     graph_unionfind_object => $uf });
+
 }
 
 exit;
