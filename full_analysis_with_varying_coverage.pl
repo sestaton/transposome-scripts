@@ -6,6 +6,7 @@ use strict;
 use warnings;
 use Getopt::Long;
 use File::Basename;
+use File::Find;
 use Transposome::PairFinder;
 use Transposome::Cluster;
 use Transposome::SeqUtil;
@@ -104,19 +105,29 @@ for my $sample_size (qw(100_000 200_000 300_000 400_000 500_000)) {
     my $memstore = Transposome::SeqUtil->new( file => $samp_seq, in_memory => 1 );
     my ($seqs, $seqct) = $memstore->store_seq;
 
-    my ($cls_dir_path, $cls_with_merges_path, $cls_tot) 
-       = $cluster->merge_clusters($vertex, $seqs, $read_pairs, $samp_rep, $uf);
+    my $cluster_data
+       = $cluster->merge_clusters({ graph_vertices         => $vertex,
+                                    sequence_hash          => $seqs,
+                                    read_pairs             => $read_pairs,
+                                    cluster_log_file       => $samp_rep,
+                                    graph_unionfind_object => $uf });
 
     # annotate clusters and generate whole-genome summary of results
     my $annotation = Transposome::Annotation->new( database  => $rep_db,
                                                    dir       => $samp_dir,
                                                    file      => $samp_rep );
 
-    my ($anno_rp_path, $anno_sum_rep_path, $total_readct, $rep_frac, $blasts, $superfams) 
-       = $annotation->annotate_clusters($cls_dir_path, $seqct, $cls_tot);
+    my @clsfastas;
+    find( sub { push @clsfastas, $File::Find::name if -f and /\.fas$/ }, $cls_dir_path );  
+    my ($singletons_file_path) = grep { /singletons/ } @clsfastas;
 
-    $annotation->clusters_annotation_to_summary($anno_rp_path, $anno_sum_rep_path, $total_readct,
-                                                $seqct, $rep_frac, $blasts, $superfams, $samp_rep);
+    my $annotation_results
+       = $annotation->annotate_clusters({ cluster_directory  => $cls_dir_path,
+                                          singletons_file    => $singletons_file_path,
+                                          total_sequence_num => $seqct,
+                                          total_cluster_num  => $cls_tot });
+
+    $annotation->clusters_annotation_to_summary( $annotation_results );
 
     $merge_thresh += 100;
 }
