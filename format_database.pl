@@ -8,7 +8,7 @@ use File::Basename;
 use Transposome::SeqFactory;
 use Getopt::Long;
 
-my $infile = shift or die $usage;
+my $infile; 
 my $outfile; 
 my $genus;
 my $species;
@@ -95,16 +95,17 @@ exit;
 sub usage {
     my $script = basename($0);
     print STDERR <<END
+
 USAGE: $script [-i] [-o] [-g] [-s] [-h]
 
 Required:
--i|infile              :       A Fasta file of repeats to be formatted for Transposome.
--o|outfile             :       A name for the formatted database.
--g|genus               :       The source genus of the sequences.
--s|species             :       The source species of the sequences.
+ -i|infile              :       A Fasta file of repeats to be formatted for Transposome.
+ -o|outfile             :       A name for the formatted database.
+ -g|genus               :       The source genus of the sequences.
+ -s|species             :       The source species of the sequences.
 
 Options:
--h|help                :       Print a usage statement.
+ -h|help                :       Print a usage statement.
 
 END
 }

@@ -10,12 +10,18 @@ use Getopt::Long;
 
 my $infile;
 my $format;
+my $threads;
+my $seqnum;
+my $cpus;
 my $out_dir;
 my $help;
 
 GetOptions(
 	   'i|infile=s'   => \$infile,
 	   'f|format=s'   => \$format,
+           't|threads=i'  => \$threads,
+           'n|seqnum=i'   => \$seqnum,
+           'c|cpus=i'     => \$cpus,
 	   'o|outdir=s'   => \$out_dir,
 	   'h|help'       => \$help,
 	   );
@@ -24,15 +30,18 @@ usage() and exit(0) if $help;
 usage() and exit(1) if !$infile or !$out_dir;
 my ($iname, $ipath, $isuffix) = fileparse($infile, qr/\.[^.]*/);
 
-$format //= 'fasta';
+$format  //= 'fasta';
+$threads //= 4;
+$seqnum  //= 25_000;
+$cpus    //= 2;
 
 my $rep = $iname."_blast_report.txt";
 my $blast = Transposome::Run::Blast->new( file      => $infile,
 					  format    => $format,
                                           dir       => $out_dir,
-                                          threads   => 4,
-                                          cpus      => 2,
-                                          seq_num   => 25_000,
+                                          threads   => $threads,
+                                          cpus      => $cpus,
+                                          seq_num   => $seqnum,
                                           report    => $rep );
 
 my $blastdb = $blast->run_allvall_blast;
@@ -54,10 +63,11 @@ for my $pid (qw(90.0 85.0 80.0)) {
 }
 
 exit;
-# methods
+## methods
 sub usage {
     my $script = basename($0);
     print STDERR <<END
+
 USAGE: $script [-i] [-n] [-h]
 
 Required:
@@ -66,8 +76,11 @@ Required:
                              of each parameter set.
 
 Options:
--f|format            :       The input sequence format (Default: FASTA).
--h|help              :       Print a usage statement.
+ -n|seqnum           :       The number of sequences to default (Default: 25000)
+ -t|threads          :       The number of threads for each simulation (Default: 4).
+ -c|cpus             :       The number of CPUs to use for each thread (Default: 2).
+ -f|format           :       The input sequence format (Default: FASTA).
+ -h|help             :       Print a usage statement.
 
 END
 }

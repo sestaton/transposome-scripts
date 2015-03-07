@@ -41,11 +41,11 @@ my $out = $iname."_$sample_size".".fasta";
 }
 
 exit;
-
-# methods
+## methods
 sub usage {
     my $script = basename($0);
     print STDERR <<END
+
 USAGE: $script -i seqs.fasta -n 100000 
 
 Required:
@@ -54,8 +54,8 @@ Required:
                              (NB: the value may be as '1000000' or with underscores
                               as in '1_000_000').
 Options:
--f|format            :       The input sequence format (Default: FASTA).
--h|help              :       Print a usage statement.
+ -f|format            :       The input sequence format (Default: FASTA).
+ -h|help              :       Print a usage statement.
 
 END
 }

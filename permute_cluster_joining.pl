@@ -8,7 +8,6 @@ use Getopt::Long;
 use Transposome::Cluster;
 use Transposome::SeqUtil;
 
-#my $usage = "$0 -s seqfile.fas -int int_file -idx idx_file -o output_directory\n";
 my $report = 'cluster_merge_permute_report.txt';
 my $seq_format;
 my $int_file;
@@ -48,23 +47,24 @@ for my $merge_thresh (qw(100 500 1000)) { # the exact threshold will depend on t
 }
 
 exit;
-# methods
+## methods
 sub usage {
     my $script = basename($0);
     print STDERR <<END
+
 USAGE: $script [-i] [-o] [-int] [-idx] [-h]
 
 Required:
--s|seqfile            :       The sequence file to pull sequences from.
--o|outdir             :       A directory name for the results.
--int|intfile          :       The integer mapping file of sequence IDs generated from the 'louvain_method' method
-                              of the Transposome::Cluster class.
--idx|idxfile          :       The index file of matches generated from the 'louvain_method' method
-                              of the Transposome::Cluster class.
-
+ -s|seqfile            :       The sequence file to pull sequences from.
+ -o|outdir             :       A directory name for the results.
+ -int|intfile          :       The integer mapping file of sequence IDs generated from the 'louvain_method' method
+                               of the Transposome::Cluster class.
+ -idx|idxfile          :       The index file of matches generated from the 'louvain_method' method
+                               of the Transposome::Cluster class.
+ 
 Options:
--f|seq_format         :       The input sequence format (Default: FASTA).
--h|help               :       Print a usage statement.
+ -f|seq_format         :       The input sequence format (Default: FASTA).
+ -h|help               :       Print a usage statement.
 
 END
 }
