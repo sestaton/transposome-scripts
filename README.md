@@ -43,8 +43,8 @@ If you write a script that uses Transposome please fork this repo, add your scri
 
 If you use any of these tools in your work, please use the following citation: 
 
-    Staton SE, and Burke JM. 2014. Transposome: Annotation of transposable element families
-         from unassembled sequence reads. doi:10.5281/zenodo.11303
+    Staton SE, and Burke JM. 2015. Transposome: A toolkit for annotation of transposable element families from unassembled sequence reads
+        Bioinformatics, doi: 10.1093/bioinformatics/btv059
 
 **LICENSE AND COPYRIGHT**
 
