@@ -38,7 +38,7 @@ my $seqio = Transposome::SeqFactory->new( file => $infile )->make_seqio_object;
 while (my $seq = $seqio->next_seq) {
     # format ID
     my $id = $seq->get_id;
-    $id =~ s/-|*/_/g;
+    $id =~ s/\-|\*/_/g;
 
     # format sequence
     my $nt = $seq->get_seq;
