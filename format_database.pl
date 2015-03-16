@@ -81,7 +81,7 @@ while (my $seq = $seqio->next_seq) {
         say $out join "\n", ">".$id."\t"."Unknown_LTR"."\t".$epithet, $nt;
     }
     elsif ($id =~ /^RST/) {
-        say $out join "\n", ">".$id."\t"."tRNA"."\t".$epithet, $nt;
+        say $out join "\n", ">".$id."\t"."SINE2/tRNA"."\t".$epithet, $nt;
     }
     else {
         # should never get here, but the data may be malformed
