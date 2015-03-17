@@ -99,8 +99,8 @@ sub usage {
 USAGE: $script [-i] [-o] [-g] [-s] [-h]
 
 Required:
- -i|infile              :       A Fasta file of repeats to be formatted for Transposome.
- -o|outfile             :       A name for the formatted database.
+ -i|infile              :       A FASTA file of repeats to be formatted for Transposome.
+ -o|outfile             :       A output filename for the formatted database.
  -g|genus               :       The source genus of the sequences.
  -s|species             :       The source species of the sequences.
 
