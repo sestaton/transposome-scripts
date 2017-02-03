@@ -48,6 +48,8 @@ open my $out, '>', $outfile;
 	next unless defined $type && @epithet;
 
 	my ($gen, $sp) = @epithet;
+	next unless defined $gen && defined $sp;
+
 	if (lc($gen) eq lc($genus) && lc($sp) eq lc($species)) {
 	    # format sequence
 	    $seq =~ s/.{60}\K/\n/g;
