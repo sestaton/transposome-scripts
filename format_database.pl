@@ -66,14 +66,16 @@ while (my $seq = $seqio->next_seq) {
 	say $out join "\n", ">".$id."\t".$superfamily."\t".$epithet, $nt;
     }
     else {
-	if ($id =~ /#(\w+)\/?(\w+(\d+)?)?$/) {
+	if ($id =~ /#(\w+)\/?(\w+(\d+)?)?/) {
 	    my $name = defined $2 ? $2 : $1;
+	    $id =~ s/\s+.*//g; # this assumes IDs are unique up to the first space
 	    say $out join "\n", ">".$id."\t".$name."\t".$epithet, $nt;
 	    next;
 	}
 
 	say STDERR "\n[WARNING]: ",$seq->get_id," does not seem to match known TE superfamilies\n"
 	    unless $quiet;
+	$id =~ s/\s+.*//g; # this assumes IDs are unique up to the first space
 	say $out join "\n", ">".$id."\tUnknown_repeat\t".$epithet, $nt;
     }
 }
@@ -85,7 +87,6 @@ exit;
 sub usage {
     my $script = basename($0);
     print STDERR <<END
-
 USAGE: $script [-i] [-o] [-g] [-s] [-h]
 
 Required:
